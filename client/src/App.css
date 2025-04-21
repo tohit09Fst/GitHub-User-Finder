@@ -1,17 +1,109 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
-  background: #f6f8fa;
-  min-height: 100vh;
+.split-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  min-height: 70vh;
 }
 
-.App {
+.split-left {
+  flex: 0 0 340px;
+  max-width: 340px;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.split-left .search-bar-container {
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.split-left .user-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .split-left {
+    height: auto;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .split-left .user-list {
+    max-height: 40vh;
+  }
+}
+
+.split-right {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.split-right > .user-details {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2vw;
+}
+
+.user-details .avatar-large {
+  width: 100%;
+  max-width: 260px;
+  min-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 18px auto;
+}
+
+.user-details h2, .user-details p, .user-details .stats, .user-details .profile-details, .user-details .profile-link {
+  width: 100%;
   max-width: 700px;
-  margin: 32px auto;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-details .profile-details {
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .split-layout {
+    flex-direction: column;
+  }
+  .split-left, .split-right {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .split-left {
+    margin-bottom: 18px;
+  }
+}
+
+
+.App {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(36,41,47,0.08);
-  padding: 32px 24px 24px 24px;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .app-header {
@@ -20,6 +112,7 @@ body {
   gap: 12px;
   margin-bottom: 24px;
   color: #24292f;
+  padding: 32px 24px 0 24px;
 }
 
 .header-icon {

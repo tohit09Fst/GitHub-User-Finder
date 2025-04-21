@@ -58,14 +58,21 @@ function App() {
         <FaGithub className="header-icon" />
         <h1>GitHub User Finder</h1>
       </header>
-      <SearchBar query={query} setQuery={setQuery} />
-      {loading && <p className="loading">Loading...</p>}
-      {error && <p className="error">{error}</p>}
-      {!userDetails ? (
-        <UserList users={users} onSelectUser={setSelectedUser} />
-      ) : (
-        <UserDetails user={userDetails} onClose={() => setSelectedUser(null)} />
-      )}
+      <div className="split-layout">
+        {/* Left Side: Search and User List */}
+        <div className="split-left">
+          <SearchBar query={query} setQuery={setQuery} />
+          {loading && <p className="loading">Loading...</p>}
+          {error && <p className="error">{error}</p>}
+          <UserList users={users} onSelectUser={setSelectedUser} />
+        </div>
+        {/* Right Side: User Details */}
+        <div className="split-right">
+          {userDetails && (
+            <UserDetails user={userDetails} onClose={() => setSelectedUser(null)} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
